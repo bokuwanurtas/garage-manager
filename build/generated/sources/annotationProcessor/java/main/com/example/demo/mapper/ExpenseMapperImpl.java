@@ -1,0 +1,112 @@
+package com.example.demo.mapper;
+
+import com.example.demo.dto.expense.ExpenseRequestDto;
+import com.example.demo.dto.expense.ExpenseResponseDto;
+import com.example.demo.models.Expense;
+import com.example.demo.models.Vehicle;
+import java.util.ArrayList;
+import java.util.List;
+import javax.annotation.processing.Generated;
+import org.springframework.stereotype.Component;
+
+@Generated(
+    value = "org.mapstruct.ap.MappingProcessor",
+    date = "2025-12-29T04:53:58+0500",
+    comments = "version: 1.5.5.Final, compiler: IncrementalProcessingEnvironment from gradle-language-java-9.2.1.jar, environment: Java 24 (Oracle Corporation)"
+)
+@Component
+public class ExpenseMapperImpl implements ExpenseMapper {
+
+    @Override
+    public ExpenseResponseDto toResponseDto(Expense expense) {
+        if ( expense == null ) {
+            return null;
+        }
+
+        ExpenseResponseDto.ExpenseResponseDtoBuilder expenseResponseDto = ExpenseResponseDto.builder();
+
+        expenseResponseDto.vehicleId( expenseVehicleId( expense ) );
+        expenseResponseDto.vehicleBrand( expenseVehicleBrand( expense ) );
+        expenseResponseDto.vehicleModel( expenseVehicleModel( expense ) );
+        expenseResponseDto.id( expense.getId() );
+        expenseResponseDto.date( expense.getDate() );
+        expenseResponseDto.description( expense.getDescription() );
+        expenseResponseDto.amount( expense.getAmount() );
+
+        return expenseResponseDto.build();
+    }
+
+    @Override
+    public List<ExpenseResponseDto> toResponseDtoList(List<Expense> expenses) {
+        if ( expenses == null ) {
+            return null;
+        }
+
+        List<ExpenseResponseDto> list = new ArrayList<ExpenseResponseDto>( expenses.size() );
+        for ( Expense expense : expenses ) {
+            list.add( toResponseDto( expense ) );
+        }
+
+        return list;
+    }
+
+    @Override
+    public Expense toEntity(ExpenseRequestDto requestDto) {
+        if ( requestDto == null ) {
+            return null;
+        }
+
+        Expense expense = new Expense();
+
+        expense.setDate( requestDto.getDate() );
+        expense.setDescription( requestDto.getDescription() );
+        expense.setAmount( requestDto.getAmount() );
+
+        return expense;
+    }
+
+    private Long expenseVehicleId(Expense expense) {
+        if ( expense == null ) {
+            return null;
+        }
+        Vehicle vehicle = expense.getVehicle();
+        if ( vehicle == null ) {
+            return null;
+        }
+        Long id = vehicle.getId();
+        if ( id == null ) {
+            return null;
+        }
+        return id;
+    }
+
+    private String expenseVehicleBrand(Expense expense) {
+        if ( expense == null ) {
+            return null;
+        }
+        Vehicle vehicle = expense.getVehicle();
+        if ( vehicle == null ) {
+            return null;
+        }
+        String brand = vehicle.getBrand();
+        if ( brand == null ) {
+            return null;
+        }
+        return brand;
+    }
+
+    private String expenseVehicleModel(Expense expense) {
+        if ( expense == null ) {
+            return null;
+        }
+        Vehicle vehicle = expense.getVehicle();
+        if ( vehicle == null ) {
+            return null;
+        }
+        String model = vehicle.getModel();
+        if ( model == null ) {
+            return null;
+        }
+        return model;
+    }
+}

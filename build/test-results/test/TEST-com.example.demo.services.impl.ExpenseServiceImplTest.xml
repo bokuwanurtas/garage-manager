@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.example.demo.services.impl.ExpenseServiceImplTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2025-12-28T23:42:01.383Z" hostname="DESKTOP-5F9MC75" time="0.2">
+  <properties/>
+  <testcase name="deleteExpenseTest()" classname="com.example.demo.services.impl.ExpenseServiceImplTest" time="0.165"/>
+  <testcase name="deleteExpenseNotFoundTest()" classname="com.example.demo.services.impl.ExpenseServiceImplTest" time="0.005"/>
+  <testcase name="addExpenseTest()" classname="com.example.demo.services.impl.ExpenseServiceImplTest" time="0.015"/>
+  <testcase name="addExpenseVehicleNotFoundTest()" classname="com.example.demo.services.impl.ExpenseServiceImplTest" time="0.006"/>
+  <testcase name="getAllExpensesTest()" classname="com.example.demo.services.impl.ExpenseServiceImplTest" time="0.005"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

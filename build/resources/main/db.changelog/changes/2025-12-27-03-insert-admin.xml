@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="insert-admin-user" author="you">
+        <insert tableName="t_users">
+            <column name="email" value="admin@garage.com"/>
+            <column name="password" value="$2a$12$0s2ZyKggLn0dQPOkEdbpdedTowbQW3CYqZRRAW6xPzE0.IfOq/01m"/> <!-- пароль "admin123" умытып калмас ушин -->
+            <column name="full_name" value="System Administrator"/>
+        </insert>
+
+        <insert tableName="t_users_roles">
+            <column name="user_id" valueComputed="(SELECT id FROM t_users WHERE email = 'admin@garage.com')"/>
+            <column name="roles_id" valueComputed="(SELECT id FROM t_permissions WHERE permission = 'ROLE_ADMIN')"/>
+        </insert>
+        <insert tableName="t_users_roles">
+            <column name="user_id" valueComputed="(SELECT id FROM t_users WHERE email = 'admin@garage.com')"/>
+            <column name="roles_id" valueComputed="(SELECT id FROM t_permissions WHERE permission = 'ROLE_OWNER')"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

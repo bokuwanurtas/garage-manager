@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.example.demo.services.impl.MaintenanceRecordServiceImplTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2025-12-28T23:42:01.588Z" hostname="DESKTOP-5F9MC75" time="0.101">
+  <properties/>
+  <testcase name="addRecordTest()" classname="com.example.demo.services.impl.MaintenanceRecordServiceImplTest" time="0.094"/>
+  <testcase name="addRecordVehicleNotFoundTest()" classname="com.example.demo.services.impl.MaintenanceRecordServiceImplTest" time="0.006"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

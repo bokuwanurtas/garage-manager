@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="insert-initial-vehicles" author="you">
+        <insert tableName="vehicles">
+            <column name="brand" value="Toyota"/>
+            <column name="model" value="Camry"/>
+            <column name="year" value="2020"/>
+            <column name="mileage" value="45000"/>
+            <column name="vin" value="4T1BF1FK0LU123456"/>
+        </insert>
+        <insert tableName="vehicles">
+            <column name="brand" value="Honda"/>
+            <column name="model" value="Civic"/>
+            <column name="year" value="2022"/>
+            <column name="mileage" value="28000"/>
+            <column name="vin" value="2HGFC2F69NH123789"/>
+        </insert>
+        <insert tableName="vehicles">
+            <column name="brand" value="BMW"/>
+            <column name="model" value="X5"/>
+            <column name="year" value="2021"/>
+            <column name="mileage" value="35000"/>
+            <column name="vin" value="5UXCR6C07M9J98765"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="insert-initial-parts" author="you">
+        <insert tableName="parts">
+            <column name="name" value="Масляный фильтр Mann"/>
+            <column name="article" value="W712/93"/>
+            <column name="price" value="8500"/>
+        </insert>
+        <insert tableName="parts">
+            <column name="name" value="Тормозные колодки Bosch"/>
+            <column name="article" value="0986494567"/>
+            <column name="price" value="25000"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

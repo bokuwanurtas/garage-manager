@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.example.demo.services.impl.PartServiceImplTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2025-12-28T23:42:01.695Z" hostname="DESKTOP-5F9MC75" time="0.123">
+  <properties/>
+  <testcase name="deletePartNotFoundTest()" classname="com.example.demo.services.impl.PartServiceImplTest" time="0.08"/>
+  <testcase name="updatePartNotFoundTest()" classname="com.example.demo.services.impl.PartServiceImplTest" time="0.006"/>
+  <testcase name="getPartTest()" classname="com.example.demo.services.impl.PartServiceImplTest" time="0.007"/>
+  <testcase name="deletePartTest()" classname="com.example.demo.services.impl.PartServiceImplTest" time="0.004"/>
+  <testcase name="addPartTest()" classname="com.example.demo.services.impl.PartServiceImplTest" time="0.006"/>
+  <testcase name="getPartNotFoundTest()" classname="com.example.demo.services.impl.PartServiceImplTest" time="0.005"/>
+  <testcase name="getAllPartsTest()" classname="com.example.demo.services.impl.PartServiceImplTest" time="0.005"/>
+  <testcase name="updatePartTest()" classname="com.example.demo.services.impl.PartServiceImplTest" time="0.007"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,67 @@
+package com.example.demo.mapper;
+
+import com.example.demo.dto.vehicle.VehicleRequestDto;
+import com.example.demo.dto.vehicle.VehicleResponseDto;
+import com.example.demo.models.Vehicle;
+import java.util.ArrayList;
+import java.util.List;
+import javax.annotation.processing.Generated;
+import org.springframework.stereotype.Component;
+
+@Generated(
+    value = "org.mapstruct.ap.MappingProcessor",
+    date = "2025-12-29T04:28:06+0500",
+    comments = "version: 1.5.5.Final, compiler: IncrementalProcessingEnvironment from gradle-language-java-9.2.1.jar, environment: Java 24 (Oracle Corporation)"
+)
+@Component
+public class VehicleMapperImpl implements VehicleMapper {
+
+    @Override
+    public VehicleResponseDto toResponseDto(Vehicle vehicle) {
+        if ( vehicle == null ) {
+            return null;
+        }
+
+        VehicleResponseDto.VehicleResponseDtoBuilder vehicleResponseDto = VehicleResponseDto.builder();
+
+        vehicleResponseDto.id( vehicle.getId() );
+        vehicleResponseDto.brand( vehicle.getBrand() );
+        vehicleResponseDto.model( vehicle.getModel() );
+        vehicleResponseDto.year( vehicle.getYear() );
+        vehicleResponseDto.mileage( vehicle.getMileage() );
+        vehicleResponseDto.vin( vehicle.getVin() );
+
+        return vehicleResponseDto.build();
+    }
+
+    @Override
+    public List<VehicleResponseDto> toResponseDtoList(List<Vehicle> vehicles) {
+        if ( vehicles == null ) {
+            return null;
+        }
+
+        List<VehicleResponseDto> list = new ArrayList<VehicleResponseDto>( vehicles.size() );
+        for ( Vehicle vehicle : vehicles ) {
+            list.add( toResponseDto( vehicle ) );
+        }
+
+        return list;
+    }
+
+    @Override
+    public Vehicle toEntity(VehicleRequestDto requestDto) {
+        if ( requestDto == null ) {
+            return null;
+        }
+
+        Vehicle vehicle = new Vehicle();
+
+        vehicle.setBrand( requestDto.getBrand() );
+        vehicle.setModel( requestDto.getModel() );
+        vehicle.setYear( requestDto.getYear() );
+        vehicle.setMileage( requestDto.getMileage() );
+        vehicle.setVin( requestDto.getVin() );
+
+        return vehicle;
+    }
+}

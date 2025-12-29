@@ -1,0 +1,63 @@
+package com.example.demo.mapper;
+
+import com.example.demo.dto.part.PartRequestDto;
+import com.example.demo.dto.part.PartResponseDto;
+import com.example.demo.models.Part;
+import java.util.ArrayList;
+import java.util.List;
+import javax.annotation.processing.Generated;
+import org.springframework.stereotype.Component;
+
+@Generated(
+    value = "org.mapstruct.ap.MappingProcessor",
+    date = "2025-12-29T04:28:06+0500",
+    comments = "version: 1.5.5.Final, compiler: IncrementalProcessingEnvironment from gradle-language-java-9.2.1.jar, environment: Java 24 (Oracle Corporation)"
+)
+@Component
+public class PartMapperImpl implements PartMapper {
+
+    @Override
+    public PartResponseDto toResponseDto(Part part) {
+        if ( part == null ) {
+            return null;
+        }
+
+        PartResponseDto.PartResponseDtoBuilder partResponseDto = PartResponseDto.builder();
+
+        partResponseDto.id( part.getId() );
+        partResponseDto.name( part.getName() );
+        partResponseDto.article( part.getArticle() );
+        partResponseDto.price( part.getPrice() );
+
+        return partResponseDto.build();
+    }
+
+    @Override
+    public List<PartResponseDto> toResponseDtoList(List<Part> parts) {
+        if ( parts == null ) {
+            return null;
+        }
+
+        List<PartResponseDto> list = new ArrayList<PartResponseDto>( parts.size() );
+        for ( Part part : parts ) {
+            list.add( toResponseDto( part ) );
+        }
+
+        return list;
+    }
+
+    @Override
+    public Part toEntity(PartRequestDto requestDto) {
+        if ( requestDto == null ) {
+            return null;
+        }
+
+        Part part = new Part();
+
+        part.setName( requestDto.getName() );
+        part.setArticle( requestDto.getArticle() );
+        part.setPrice( requestDto.getPrice() );
+
+        return part;
+    }
+}

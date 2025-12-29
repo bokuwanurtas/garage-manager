@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="create-vehicles-table" author="you">
+        <createTable tableName="vehicles">
+            <column name="id" type="BIGSERIAL">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="brand" type="VARCHAR(100)"/>
+            <column name="model" type="VARCHAR(100)"/>
+            <column name="year" type="INT"/>
+            <column name="mileage" type="INT"/>
+            <column name="vin" type="VARCHAR(17)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create-maintenance-records-table" author="you">
+        <createTable tableName="maintenance_records">
+            <column name="id" type="BIGSERIAL">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="vehicle_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date" type="DATE"/>
+            <column name="mileage_at_service" type="INT"/>
+            <column name="description" type="VARCHAR(500)"/>
+            <column name="cost" type="INT"/>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="maintenance_records"
+                                 baseColumnNames="vehicle_id"
+                                 referencedTableName="vehicles"
+                                 referencedColumnNames="id"
+                                 constraintName="fk_maintenance_vehicle"/>
+    </changeSet>
+
+    <changeSet id="create-parts-table" author="you">
+        <createTable tableName="parts">
+            <column name="id" type="BIGSERIAL">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(200)"/>
+            <column name="article" type="VARCHAR(100)"/>
+            <column name="price" type="INT"/>
+        </createTable>
+    </changeSet>
+
+
+    <changeSet id="create-expenses-table" author="you">
+        <createTable tableName="expenses">
+            <column name="id" type="BIGSERIAL">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="vehicle_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date" type="DATE"/>
+            <column name="description" type="VARCHAR(500)"/>
+            <column name="amount" type="INT"/>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="expenses"
+                                 baseColumnNames="vehicle_id"
+                                 referencedTableName="vehicles"
+                                 referencedColumnNames="id"
+                                 constraintName="fk_expense_vehicle"/>
+    </changeSet>
+
+    <changeSet id="create-permissions-table" author="you">
+        <createTable tableName="t_permissions">
+            <column name="id" type="BIGSERIAL">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="permission" type="VARCHAR(100)">
+                <constraints unique="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create-users-table" author="you">
+        <createTable tableName="t_users">
+            <column name="id" type="BIGSERIAL">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="email" type="VARCHAR(255)">
+                <constraints unique="true"/>
+            </column>
+            <column name="password" type="VARCHAR(255)"/>
+            <column name="full_name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create-users-roles-table" author="you">
+        <createTable tableName="t_users_roles">
+            <column name="user_id" type="BIGINT"/>
+            <column name="roles_id" type="BIGINT"/>
+        </createTable>
+        <addPrimaryKey tableName="t_users_roles" columnNames="user_id,roles_id"/>
+        <addForeignKeyConstraint baseTableName="t_users_roles"
+                                 baseColumnNames="user_id"
+                                 referencedTableName="t_users"
+                                 referencedColumnNames="id"
+                                 constraintName="fk_users_roles_user"/>
+        <addForeignKeyConstraint baseTableName="t_users_roles"
+                                 baseColumnNames="roles_id"
+                                 referencedTableName="t_permissions"
+                                 referencedColumnNames="id"
+                                 constraintName="fk_users_roles_permission"/>
+    </changeSet>
+
+    <changeSet id="add-enabled-to-users" author="you">
+        <addColumn tableName="t_users">
+            <column name="enabled" type="BOOLEAN" defaultValueBoolean="true">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="set-enabled-for-existing-users" author="you">
+        <update tableName="t_users">
+            <column name="enabled" valueBoolean="true"/>
+            <where>enabled IS NULL</where>
+        </update>
+    </changeSet>
+</databaseChangeLog>
